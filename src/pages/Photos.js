@@ -1,9 +1,11 @@
-import React from "react"
+import React, {useContext} from "react"
+
 
 function Photos() {
+
     return (
         <main className="photos">
-            <h1>Images go here</h1>
+            <h1>Images goes here</h1>
         </main>
     )
 }

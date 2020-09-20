@@ -10,9 +10,34 @@ function ContextProvider(props) {
         .then(response => response.json())
         .then(data => setPhotos(data))
     } , [])
+    // data example:
+    // [{
+    //     "url": "https://github.com/bobziroll/scrimba-react-bootcamp-images/blob/master/pic1.jpg?raw=true",
+    //     "id": "1",
+    //     "isFavorite": false
+    // },
+    //     ...
+    // ]
+
+    function toggleFavorited(id){
+        const updatedPhotos = photos.map(img => {
+            if(img.id === id){
+                return{
+                    ...img,
+                    isFavorite : !img.isFavorite  
+                }
+            }
+            else{
+                return img
+            }
+        })
+
+        setPhotos(updatedPhotos)
+
+    }
 
     return(
-        <Context.Provider value={{photos}}>
+        <Context.Provider value={{photos, toggleFavorited}}>
             {props.children}
         </Context.Provider>
     )

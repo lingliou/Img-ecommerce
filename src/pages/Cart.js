@@ -21,13 +21,22 @@ function Cart() {
             emptyCart()
         }, 3000)
     }
+
+    function button(){
+        if(cartItems.length !== 0){
+            return <button onClick={()=>order()}>{text}</button>
+        }
+        else{
+            return <p>You have no items in your cart.</p>
+        }
+    }
     return (
         <main className="cart-page">
             <h1>Check out</h1>
             {cartElement}
             <p className="total-cost">Total:{Price} </p>
             <div className="order-button">
-            <button onClick={()=>order()}>{text}</button>
+            {button()}
             </div>
         </main>
     )

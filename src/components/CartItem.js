@@ -1,10 +1,11 @@
-import React,{useContext,useState} from 'react'
+import React,{useContext} from 'react'
 import {Context} from '../Context'
 import PropTypes from 'prop-types'
+import useHover from '../hooks/useHover'
 
 function CartItem({item}){
     const{removeFromCart} = useContext(Context)
-    const[hover, setHover] = useState(false)
+    const [hover, ref] = useHover()
 
     function trashIconClassName(){
         if(hover){
@@ -18,15 +19,14 @@ function CartItem({item}){
         <div className="cart-item">
             <i className={trashIconClassName()}
                 onClick={()=>removeFromCart(item)}
-                onMouseEnter={()=> setHover(true)}
-                onMouseLeave={()=>setHover(false)}></i>
+                ref={ref}></i>
             <img src={item.url} width="130px" height="73px" />
             <p>$5.99</p>
         </div>
     )
 }
 
-CartItem.prototype ={
+CartItem.propTypes ={
     item: PropTypes.shape({
         url: PropTypes.string.isRequired
     })
